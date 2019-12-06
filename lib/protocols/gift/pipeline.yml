@@ -1,0 +1,7 @@
+---
+name: gift
+check: 
+  - pipe: verify_multisig
+    num_sigs: 1
+verify: []
+update: []

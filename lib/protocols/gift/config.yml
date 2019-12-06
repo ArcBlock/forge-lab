@@ -1,0 +1,13 @@
+---
+name: gift
+version: 2
+tags:
+  - trade
+namespace: CoreTx
+description: A gift to you.
+type_urls:
+  fg:t:gift: ForgeAbi.GiftTx
+proto: protocol.proto
+pipeline: pipeline.yml
+sources:
+  - protocol.ex
