@@ -1,6 +1,6 @@
 ---
 name: gift
-version: 2
+version: 1
 tags:
   - trade
 namespace: CoreTx
