@@ -11,6 +11,12 @@ Required environements:
   
 ## Usage
 
+### Download the binary
+
+```
+  forge install latest
+```
+
 ### Create a Chain
 ```
   forge chain:create --defaults
