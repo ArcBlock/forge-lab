@@ -12,18 +12,18 @@ Required environements:
 ## Usage
 
 ### Create a Chain
-`
+```
   forge chain:create --defaults
   cp ./resources/forge_release.toml ~/.forge_chains/forge_my-chain/
   forge chain:start
-`
+```
 
 ### Connect Sdk to the chain
 
-`
+```
   mix deps.get
   mix compile
   iex -S mix
   ForgeLab.connect()
-`
+```
 
