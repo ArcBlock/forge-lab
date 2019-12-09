@@ -1,3 +1,5 @@
 _build/
-outline.md
 deps/
+.forge_chains/
+.compile
+outline.md
