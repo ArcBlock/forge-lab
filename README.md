@@ -1,21 +1,29 @@
 # ForgeLab
 
-**TODO: Add description**
+Hands on lab for Forge Framework.
 
 ## Installation
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `forge_lab` to your list of dependencies in `mix.exs`:
+Required environements:
+  1. Erlang/OTP 22
+  2. Elixir 1.9
+  3. forge-cli 1.0.2 or higher
+  
+## Usage
 
-```elixir
-def deps do
-  [
-    {:forge_lab, "~> 0.1.0"}
-  ]
-end
-```
+### Create a Chain
+`
+  forge chain:create --defaults
+  cp ./resources/forge_release.toml ~/.forge_chains/forge_my-chain/
+  forge chain:start
+`
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/forge_lab](https://hexdocs.pm/forge_lab).
+### Connect Sdk to the chain
+
+`
+  mix deps.get
+  mix compile
+  iex -S mix
+  ForgeLab.connect()
+`
 
