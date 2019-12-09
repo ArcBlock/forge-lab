@@ -1,0 +1,8 @@
+syntax = "proto3";
+package forge_abi;
+
+import "type.proto";
+message GiftTx {
+  // The amount of token to give to receiver.
+  BigUint value = 1;
+}

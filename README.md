@@ -33,3 +33,14 @@ Required environements:
   ForgeLab.connect()
 ```
 
+### Compile Transaction
+
+```
+  forge contract:compile ./protocols/gift
+```
+
+### Deploy Transaction
+
+```
+  forge contract:deploy .compiled/gift/elixir/gift/gift.itx.json
+```
