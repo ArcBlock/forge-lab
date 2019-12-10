@@ -21,13 +21,25 @@ defmodule CoreTx.Gift do
     use ForgeAbi.Unit
     use ForgePipe.Builder
 
+    alias CoreState.Account
+
     def init(opts), do: opts
 
     def call(%{itx: itx, tx: tx, context: context, db_handler: handler} = info, _opts) do
       %{sender_state: sender_state, receiver_state: receiver_state} = info
 
+      new_sender_state = update_sender_state(sender_state, itx, tx, context, handler)
+      new_receiver_state = update_receiver_state(receiver_state, itx, context, handler)
+
+      info
+      |> put(:sender_state, new_sender_state)
+      |> put(:receiver_state, new_receiver_state)
+      |> put_status(:ok)
+    end
+
+    defp update_sender_state(sender_state, itx, tx, context, handler) do
       new_sender_state =
-        CoreState.Account.update(
+        Account.update(
           sender_state,
           %{
             nonce: tx.nonce,
@@ -38,8 +50,12 @@ defmodule CoreTx.Gift do
 
       :ok = handler.put!(sender_state.address, new_sender_state)
 
+      new_sender_state
+    end
+
+    defp update_receiver_state(receiver_state, itx, context, handler) do
       new_receiver_state =
-        CoreState.Account.update(
+        Account.update(
           receiver_state,
           %{
             balance: receiver_state.balance + itx.value
@@ -49,10 +65,7 @@ defmodule CoreTx.Gift do
 
       :ok = handler.put!(receiver_state.address, new_receiver_state)
 
-      info
-      |> put(:sender_state, new_sender_state)
-      |> put(:receiver_state, new_receiver_state)
-      |> put_status(:ok)
+      new_receiver_state
     end
   end
 end
