@@ -61,8 +61,6 @@ defmodule CoreTx.Gift do
     alias ForgeAbi.AssetState
     alias CoreTx.Gift.Helper
 
-    require Logger
-
     def init(opts), do: opts
 
     def call(%{itx: itx, tx: tx, context: context, db_handler: handler} = info, _opts) do
