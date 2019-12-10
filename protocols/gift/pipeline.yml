@@ -5,6 +5,8 @@ check:
     num_sigs: 1
   - pipe: extract_receiver
     from: [[:tx, :signatures]]
+  - pipe: :custom
+    name: dedup
 
 verify:
   - pipe: extract_state
