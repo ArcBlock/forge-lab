@@ -1,5 +1,9 @@
 defmodule CoreTx.Gift do
   defmodule Rpc do
+    @moduledoc """
+    Contains helper methods to assemble and sign a GiftTx transaction.
+    """
+
     import ForgeSdk.Tx.Builder, only: [tx: 2]
 
     tx(:prepare_gift, multisig: true)
