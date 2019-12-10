@@ -3,5 +3,22 @@ name: gift
 check: 
   - pipe: verify_multisig
     num_sigs: 1
-verify: []
-update: []
+  - pipe: extract_receiver
+    from: [[:tx, :signatures]]
+
+verify:
+  - pipe: extract_state
+    from: [:tx, :from]
+    to: [:sender_state]
+    status: :invalid_sender_state
+  - pipe: extract_state
+    from: :receiver
+    to: :receiver_state
+    status: :invalid_receiver_state
+  - pipe: verify_balance
+    state: :sender_state
+    value: [[:itx, :value]]
+
+update:
+  - pipe: :custom
+    name: update_tx
